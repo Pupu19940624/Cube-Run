@@ -5,21 +5,26 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class CharacterMovement : MonoBehaviour {
 
-	public float movementSpeed = 5.0f;
+	public float movementSpeed = 4.0f;
 	public float jumpSpeed = 5.0f;
 	public float gravity = 2.0f;
-	Animator animator;
+	public static Animator animator;
 	float speed = 0.0f;
 	float maxSpeed = 1.0f;
 	float minSpeed = 0.0f;
 	Vector3 moveToward;
 	CharacterController characterController;
 
+	public GameObject trail;
+	public float trailInterval = 0.3f;
+
 	// Use this for initialization
 	void Start () {
 		animator = GetComponent<Animator>();
 		moveToward = Vector3.zero;
 		characterController = GetComponent<CharacterController>();
+
+		InvokeRepeating("CreateFootPrint", 0.0f, trailInterval);
 	}
 	
 	// Update is called once per frame
@@ -47,7 +52,7 @@ public class CharacterMovement : MonoBehaviour {
 			
 			moveToward = gameObject.transform.forward * speed * movementSpeed;
 
-			if (CrossPlatformInputManager.GetButtonDown("Jump")) {
+			if (CrossPlatformInputManager.GetButtonDown("Jump") || Input.GetKeyDown("space")) {
 				animator.SetTrigger("Jump");
 				speed = 0;
 				moveToward.y = jumpSpeed;
@@ -57,5 +62,10 @@ public class CharacterMovement : MonoBehaviour {
 		
 		characterController.Move(moveToward * Time.deltaTime);
 		
+	}
+
+	void CreateFootPrint () {
+		var fp = Instantiate(trail, gameObject.transform.position + new Vector3(-0.5f, 1.0f, 0.0f), gameObject.transform.rotation);
+		Destroy(fp, 5);
 	}
 }
