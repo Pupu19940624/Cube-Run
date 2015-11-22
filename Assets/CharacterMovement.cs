@@ -5,8 +5,8 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class CharacterMovement : MonoBehaviour {
 
-	public float movementSpeed = 5.0f;
-	public float jumpSpeed = 5.0f;
+	public float movementSpeed = 4.0f;
+	public float jumpSpeed = 6.0f;
 	public static Animator animator;
 	float speed = 0.0f;
 	float maxSpeed = 1.0f;
