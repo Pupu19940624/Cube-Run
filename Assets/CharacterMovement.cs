@@ -6,7 +6,7 @@ using UnityStandardAssets.CrossPlatformInput;
 public class CharacterMovement : MonoBehaviour {
 
 	public float movementSpeed = 4.0f;
-	public float jumpSpeed = 5.0f;
+	public float jumpSpeed = 8.0f;
 	public float gravity = 2.0f;
 	public static Animator animator;
 	float speed = 0.0f;
@@ -17,6 +17,8 @@ public class CharacterMovement : MonoBehaviour {
 
 	public GameObject trail;
 	public float trailInterval = 0.3f;
+
+	bool doubleJump = false;
 
 	// Use this for initialization
 	void Start () {
@@ -51,12 +53,16 @@ public class CharacterMovement : MonoBehaviour {
 			gameObject.transform.LookAt(gameObject.transform.position + new Vector3(moveToward.x, 0, moveToward.z));
 			
 			moveToward = gameObject.transform.forward * speed * movementSpeed;
+		}
 
-			if (CrossPlatformInputManager.GetButtonDown("Jump") || Input.GetKeyDown("space")) {
-				animator.SetTrigger("Jump");
+		if (CrossPlatformInputManager.GetButtonDown("Jump") || Input.GetKeyDown("space")) {
+			if (doubleJump || characterController.isGrounded) {
+				Debug.Log("jump");
+				animator.SetTrigger(doubleJump ? "DoubleJump" : "Jump");
 				speed = 0;
-				moveToward.y = jumpSpeed;
+				moveToward.y += jumpSpeed;
 				animator.SetFloat("WalkSpeed", speed);
+				doubleJump = !doubleJump;
 			}
 		}
 		
