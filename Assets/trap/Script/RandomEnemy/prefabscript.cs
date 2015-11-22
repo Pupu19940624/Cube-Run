@@ -9,12 +9,12 @@ public class prefabscript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		Instantiate(Resources.Load("Zombunny"),new Vector3(2,2,2),Quaternion.identity);
+		//Instantiate(Resources.Load("Zombunny"),new Vector3(2,2,2),Quaternion.identity);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		V3_Random=new Vector3(Random.Range(-50f,50f),0,Random.Range(-50f,50f));
+		V3_Random=new Vector3(Random.Range(-50f,50f),2f,Random.Range(-50f,50f));
 		//XYZ隨機值
 		if (f_Time > 0) {
 			f_Time -= Time.deltaTime;
