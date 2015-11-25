@@ -6,7 +6,8 @@ using UnityStandardAssets.CrossPlatformInput;
 public class CharacterMovement : MonoBehaviour {
 
 	public float movementSpeed = 4.0f;
-	public float jumpSpeed = 6.0f;
+	public float jumpSpeed = 8.0f;
+	public float gravity = 20.0f;
 	public static Animator animator;
 	float speed = 0.0f;
 	float maxSpeed = 1.0f;
@@ -15,7 +16,7 @@ public class CharacterMovement : MonoBehaviour {
 	CharacterController characterController;
 
 	public GameObject trail;
-	public float trailInterval = 0.3f;
+	public float trailInterval = 0.1f;
 
 	bool doubleJump = false;
 
@@ -50,10 +51,10 @@ public class CharacterMovement : MonoBehaviour {
 				animator.SetFloat("WalkSpeed", speed);
 			}
 
-			moveToward = new Vector3(CrossPlatformInputManager.GetAxis("Horizontal"), moveToward.y, CrossPlatformInputManager.GetAxis("Vertical"));
+			moveToward = new Vector3(CrossPlatformInputManager.GetAxis("Horizontal"), 0, CrossPlatformInputManager.GetAxis("Vertical"));
 			gameObject.transform.LookAt(gameObject.transform.position + new Vector3(moveToward.x, 0, moveToward.z));
 			
-			moveToward = gameObject.transform.forward * speed * movementSpeed;
+			moveToward = new Vector3(gameObject.transform.forward.x, 0, gameObject.transform.forward.z) * speed * movementSpeed;
 		}
 
 		if (CrossPlatformInputManager.GetButtonDown("Jump") || Input.GetKeyDown("space")) {
@@ -61,18 +62,24 @@ public class CharacterMovement : MonoBehaviour {
 				Debug.Log("jump");
 				animator.SetTrigger(doubleJump ? "DoubleJump" : "Jump");
 				speed = 0;
-				moveToward.y += jumpSpeed;
+				moveToward.y = jumpSpeed;
 				animator.SetFloat("WalkSpeed", speed);
 				doubleJump = !doubleJump;
 			}
 		}
+
+		moveToward.y -= gravity * Time.deltaTime;
 		
 		characterController.Move(moveToward * Time.deltaTime);
 		
 	}
 
 	void CreateFootPrint () {
-		var fp = Instantiate(trail, gameObject.transform.position + new Vector3(-0.5f, 1.0f, 0.0f), gameObject.transform.rotation);
+		if (gameObject.transform.position.y < 0) {
+			Debug.Log("under");
+		}
+		var fp = Instantiate(trail, gameObject.transform.position + new Vector3(0.0f, 0.5f, 0.0f), gameObject.transform.rotation);
 		Destroy(fp, 5);
 	}
+
 }
