@@ -171,7 +171,21 @@ ModelImporter:
     optimizeGameObjects: 0
     motionNodeName: 
     animationImportErrors: 
-    animationImportWarnings: 
+    animationImportWarnings: "\nClip 'Take 001' has import animation warnings that
+      might lower retargeting quality:\nNote: Activate translation DOF on avatar to
+      improve retargeting quality.\n\t'Ciccio_SH_Spine01J' has translation animation
+      that will be discarded.\n\t'Ciccio_SH_Spine02J' has translation animation that
+      will be discarded.\n\t'Ciccio_SH_Spine03J' has translation animation that will
+      be discarded.\n\t'Ciccio_SH_Spine03J' is inbetween humanoid transforms and has
+      rotation animation that will be discarded.\n\t'Ciccio_SH_SpineTopJ' has translation
+      animation that will be discarded.\n\t'Ciccio_SH_SpineTopJ' is inbetween humanoid
+      transforms and has rotation animation that will be discarded.\n\t'Ciccio_SH_HeadJ'
+      has translation animation that will be discarded.\n\t'Ciccio_SH_lClavicleJ'
+      has translation animation that will be discarded.\n\t'Ciccio_SH_lShoulderJ'
+      has translation animation that will be discarded.\n\t'Ciccio_SH_rClavicleJ'
+      has translation animation that will be discarded.\n\t'Ciccio_SH_lBallJ' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'Ciccio_SH_rBallJ'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     animationCompression: 1
@@ -194,15 +208,31 @@ ModelImporter:
       loopTime: 1
       loopBlend: 1
       loopBlendOrientation: 1
-      loopBlendPositionY: 1
+      loopBlendPositionY: 0
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 1
-      keepOriginalPositionY: 1
+      keepOriginalPositionY: 0
       keepOriginalPositionXZ: 0
-      heightFromFeet: 0
+      heightFromFeet: 1
       mirror: 1
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
+      curves:
+      - name: GravityWeight
+        curve:
+          serializedVersion: 2
+          curve:
+          - time: .00833333377
+            value: 1.00125003
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+          - time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+          preInfinity: 2
+          postInfinity: 2
       events: []
       transformMask: []
       maskType: 0
@@ -220,12 +250,12 @@ ModelImporter:
       loopTime: 1
       loopBlend: 1
       loopBlendOrientation: 1
-      loopBlendPositionY: 1
+      loopBlendPositionY: 0
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 1
-      keepOriginalPositionY: 1
+      keepOriginalPositionY: 0
       keepOriginalPositionXZ: 0
-      heightFromFeet: 0
+      heightFromFeet: 1
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
@@ -246,12 +276,12 @@ ModelImporter:
       loopTime: 1
       loopBlend: 1
       loopBlendOrientation: 1
-      loopBlendPositionY: 1
+      loopBlendPositionY: 0
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 1
-      keepOriginalPositionY: 1
+      keepOriginalPositionY: 0
       keepOriginalPositionXZ: 0
-      heightFromFeet: 0
+      heightFromFeet: 1
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
