@@ -49,8 +49,9 @@ public class EnemyAttack : MonoBehaviour
     void gotyou ()
     {
         timer = 0f;
-		playerAnim.SetTrigger ("Die");
 		isDead = true;
 		//playerInRange = false;
+
+        CharacterMovement.GameOver();
     }
 }

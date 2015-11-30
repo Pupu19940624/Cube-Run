@@ -15,7 +15,7 @@ public class BallMovement : MonoBehaviour
 		float v = Random.Range(-1.0f,1.0f);
 		movement.Set (h, 0f, v);
 		
-		Ball.AddForce (movement * 3000);
+		// Ball.AddForce (movement * 3000);
 	}
 	
 	

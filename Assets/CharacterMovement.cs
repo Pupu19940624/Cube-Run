@@ -82,4 +82,10 @@ public class CharacterMovement : MonoBehaviour {
 		Destroy(fp, 5);
 	}
 
+	public static void GameOver() {
+		Debug.Log("Die!");
+		CharacterMovement.animator.SetTrigger("Die");
+		Application.LoadLevel(Application.loadedLevel);
+	}
+
 }
