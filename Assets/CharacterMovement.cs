@@ -18,17 +18,21 @@ public class CharacterMovement : MonoBehaviour {
 	public GameObject trail;
 	public float trailInterval = 0.1f;
 
+	public static CharacterMovement cm;
+
+	public static bool canMove = true;
+
 	bool doubleJump = false;
 
 	// Use this for initialization
 	void Start () {
+		cm = this;
+		canMove = true;
 		animator = GetComponent<Animator>();
 		moveToward = Vector3.zero;
 		characterController = GetComponent<CharacterController>();
 
 		InvokeRepeating("CreateFootPrint", 0.0f, trailInterval);
-		Debug.Log(GetComponent<CharacterController>().bounds.size);
-		Debug.Log(GameObject.Find("Ground").GetComponent<Renderer>().bounds.size);
 	}
 	
 	// Update is called once per frame
@@ -40,7 +44,7 @@ public class CharacterMovement : MonoBehaviour {
 		// gameObject.transform.Translate(direction * movementSpeed * Time.deltaTime);
 
 		
-		if (characterController.isGrounded) {
+		if (characterController.isGrounded && canMove) {
 			//// 360 degree
 			if (CrossPlatformInputManager.GetAxis("Horizontal") != 0 || CrossPlatformInputManager.GetAxis("Vertical") != 0) {
 				speed = 1;
@@ -59,7 +63,7 @@ public class CharacterMovement : MonoBehaviour {
 			moveToward = new Vector3(gameObject.transform.forward.x, 0, gameObject.transform.forward.z) * speed * movementSpeed;
 		}
 
-		if (CrossPlatformInputManager.GetButtonDown("Jump") || Input.GetKeyDown("space")) {
+		if (CrossPlatformInputManager.GetButtonDown("Jump") || Input.GetKeyDown("space") && canMove) {
 			if (doubleJump || characterController.isGrounded) {
 				Debug.Log("jump");
 				animator.SetTrigger(doubleJump ? "DoubleJump" : "Jump");
@@ -72,7 +76,10 @@ public class CharacterMovement : MonoBehaviour {
 
 		moveToward.y -= gravity * Time.deltaTime;
 		
-		characterController.Move(moveToward * Time.deltaTime);
+		if (canMove) {
+			characterController.Move(moveToward * Time.deltaTime);
+		}
+		
 		
 	}
 
@@ -87,7 +94,14 @@ public class CharacterMovement : MonoBehaviour {
 	public static void GameOver() {
 		Debug.Log("Die!");
 		CharacterMovement.animator.SetTrigger("Die");
-		Application.LoadLevel(Application.loadedLevel);
+		canMove = false;
+
+		cm.Invoke("Back2MainMenu", 3);
+
+		
 	}
 
+	void Back2MainMenu() {
+		Application.LoadLevel("MainMenu");
+	}
 }

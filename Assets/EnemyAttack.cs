@@ -19,9 +19,10 @@ public class EnemyAttack : MonoBehaviour
 
     void OnTriggerEnter (Collider other)
     {
-        if(other.gameObject == player)
+        if(other.gameObject.name == "Player")
         {
-            playerInRange = true;
+            // playerInRange = true;
+            CharacterMovement.GameOver();
         }
     }
 
@@ -39,10 +40,10 @@ public class EnemyAttack : MonoBehaviour
     {
         //timer += Time.deltaTime;
 
-        if(/*timer >= timeBetweenAttacks && */playerInRange)
-        {
-            gotyou ();
-        }
+        // if(/*timer >= timeBetweenAttacks && */playerInRange)
+        // {
+        //     gotyou ();
+        // }
     }
 
 
@@ -51,6 +52,7 @@ public class EnemyAttack : MonoBehaviour
         timer = 0f;
 		isDead = true;
 		//playerInRange = false;
+        Debug.Log("dddd");
 
         CharacterMovement.GameOver();
     }
