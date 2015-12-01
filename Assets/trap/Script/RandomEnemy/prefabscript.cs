@@ -3,6 +3,7 @@ using System.Collections;
 
 public class prefabscript : MonoBehaviour {
 	public GameObject Obj_Creat;//要生成的物件
+	public GameObject warningMark;
 	public float f_Time=1.0f; //生成間隔
 	public Transform Tran_CreatPoint;//物件要生成的位置
 	public Vector3 V3_Random;//隨機生成位置
@@ -12,6 +13,8 @@ public class prefabscript : MonoBehaviour {
 	float size;
 
 	public float ballSpeed = 3000f;
+	Vector3 aFace;
+	Vector3 aPosition;
 
 	void Start () {
 
@@ -42,33 +45,42 @@ public class prefabscript : MonoBehaviour {
 		for (int i = 0; i < n; i++) {
 			float rFace = Random.Range(1, 5);
 			float rPosition = Random.Range(-size / 2, size / 2);
-			Vector3 aFace;
-			Vector3 aPosition;
+			// Vector3 aFace;
+			// Vector3 aPosition;
 
 			if (rFace == 1) {
 				aFace = new Vector3(0, 0, 1);
-				aPosition = new Vector3(rPosition, 0, -50f);
+				aPosition = new Vector3(rPosition, 0.5f, -50f);
 			}
 			else if (rFace == 2) {
 				aFace = new Vector3(-1, 0, 0);
-				aPosition = new Vector3(50f, 0, rPosition);
+				aPosition = new Vector3(50f, 0.5f, rPosition);
 			}
 			else if (rFace == 3) {
 				aFace = new Vector3(0, 0, -1);
-				aPosition = new Vector3(rPosition, 0, 50f);
+				aPosition = new Vector3(rPosition, 0.5f, 50f);
 			}
 			else {
 				aFace = new Vector3(1, 0, 0);
-				aPosition = new Vector3(-50f, 0, rPosition);
+				aPosition = new Vector3(-50f, 0.5f, rPosition);
 			}
 
-			GameObject ball = (GameObject) Instantiate (Obj_Creat, aPosition, Quaternion.identity);
-			ball.GetComponent<Rigidbody>().AddForce(aFace * ballSpeed);
+			GameObject warning = (GameObject) Instantiate (warningMark, aPosition, Quaternion.identity);
+			
+			Invoke("createBallPrefab", 1);
 
-			Destroy(ball, 2);
-
-			Score.score += 1;
+			Destroy(warning, 1);
 		}
 		
+	}
+
+	void createBallPrefab() {
+		GameObject ball = (GameObject) Instantiate (Obj_Creat, aPosition, Quaternion.identity);
+		ball.GetComponent<Rigidbody>().AddForce(aFace * ballSpeed);
+		ball.GetComponent<Rigidbody>().AddTorque(aFace * 100, ForceMode.Impulse);
+
+		Destroy(ball, 2);
+
+		Score.score += 1;
 	}
 }

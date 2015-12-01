@@ -27,6 +27,8 @@ public class CharacterMovement : MonoBehaviour {
 		characterController = GetComponent<CharacterController>();
 
 		InvokeRepeating("CreateFootPrint", 0.0f, trailInterval);
+		Debug.Log(GetComponent<CharacterController>().bounds.size);
+		Debug.Log(GameObject.Find("Ground").GetComponent<Renderer>().bounds.size);
 	}
 	
 	// Update is called once per frame
