@@ -5,15 +5,17 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class CharacterMovement : MonoBehaviour {
 
-	public float movementSpeed = 4.0f;
-	public float jumpSpeed = 8.0f;
-	public float gravity = 20.0f;
+	public float movementSpeed = 25.0f;
+	public float jumpSpeed = 20.0f;
+	public float gravity = 40.0f;
 	public static Animator animator;
 	float speed = 0.0f;
 	float maxSpeed = 1.0f;
 	float minSpeed = 0.0f;
 	Vector3 moveToward;
 	CharacterController characterController;
+
+	public GameObject shadow;
 
 	public GameObject trail;
 	public float trailInterval = 0.1f;
@@ -45,6 +47,8 @@ public class CharacterMovement : MonoBehaviour {
 
 		
 		if (characterController.isGrounded && canMove) {
+			doubleJump = false;
+
 			//// 360 degree
 			if (CrossPlatformInputManager.GetAxis("Horizontal") != 0 || CrossPlatformInputManager.GetAxis("Vertical") != 0) {
 				speed = 1;
@@ -65,7 +69,8 @@ public class CharacterMovement : MonoBehaviour {
 
 		if (CrossPlatformInputManager.GetButtonDown("Jump") || Input.GetKeyDown("space") && canMove) {
 			if (doubleJump || characterController.isGrounded) {
-				Debug.Log("jump");
+				if (!doubleJump) Instantiate(shadow, new Vector3(gameObject.transform.position.x, 0.05f, gameObject.transform.position.z), gameObject.transform.rotation);
+
 				animator.SetTrigger(doubleJump ? "DoubleJump" : "Jump");
 				speed = 0;
 				moveToward.y = jumpSpeed;
