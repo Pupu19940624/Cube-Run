@@ -7,7 +7,7 @@ public class prefabscript : MonoBehaviour {
 	public float f_Time=1.0f; //生成間隔
 	public Transform Tran_CreatPoint;//物件要生成的位置
 	public Vector3 V3_Random;//隨機生成位置
-	// Use this for initialization
+	public GameObject canvas;
 
 	GameObject ground;
 	float size;
@@ -22,6 +22,7 @@ public class prefabscript : MonoBehaviour {
 
 		ground = GameObject.Find("Ground");
 		size = ground.GetComponent<Renderer>().bounds.size.x;
+		canvas = GameObject.Find("Canvas");
 	}
 	
 	// Update is called once per frame
