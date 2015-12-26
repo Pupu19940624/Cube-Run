@@ -5,6 +5,8 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class CharacterMovement : MonoBehaviour {
 
+	public static bool DebugMode = true;
+
 	public float movementSpeed = 25.0f;
 	public float jumpSpeed = 20.0f;
 	public float gravity = 40.0f;
@@ -14,7 +16,7 @@ public class CharacterMovement : MonoBehaviour {
 	float minSpeed = 0.0f;
 	Vector3 moveToward;
 	CharacterController characterController;
-	
+
 	public GameObject trail;
 	public float trailInterval = 0.1f;
 
@@ -24,6 +26,10 @@ public class CharacterMovement : MonoBehaviour {
 
 	bool doubleJump = false;
 
+	public AudioSource audio;
+	public AudioClip stepSound;
+	public AudioClip jumpSound;
+
 	// Use this for initialization
 	void Start () {
 		cm = this;
@@ -31,6 +37,7 @@ public class CharacterMovement : MonoBehaviour {
 		animator = GetComponent<Animator>();
 		moveToward = Vector3.zero;
 		characterController = GetComponent<CharacterController>();
+		audio = GetComponent<AudioSource>();
 
 		InvokeRepeating("CreateFootPrint", 0.0f, trailInterval);
 	}
@@ -52,6 +59,9 @@ public class CharacterMovement : MonoBehaviour {
 				speed = 1;
 				// speed = Mathf.Clamp(speed + Time.deltaTime, minSpeed, maxSpeed);
 				animator.SetFloat("WalkSpeed", speed);
+				if (!audio.isPlaying) {
+					audio.PlayOneShot(stepSound);
+				}
 			}
 			else {
 				speed = 0;
@@ -72,6 +82,9 @@ public class CharacterMovement : MonoBehaviour {
 				moveToward.y = jumpSpeed;
 				animator.SetFloat("WalkSpeed", speed);
 				doubleJump = !doubleJump;
+
+				// audio.PlayOneShot(jumpSound);
+				
 			}
 		}
 
@@ -93,13 +106,13 @@ public class CharacterMovement : MonoBehaviour {
 	}
 
 	public static void GameOver() {
-		Debug.Log("Die!");
-		CharacterMovement.animator.SetTrigger("Die");
-		canMove = false;
+		if (!DebugMode) {
+			Debug.Log("Die!");
+			CharacterMovement.animator.SetTrigger("Die");
+			canMove = false;
 
-		cm.Invoke("Back2MainMenu", 3);
-
-		
+			cm.Invoke("Back2MainMenu", 3);
+		}
 	}
 
 	void Back2MainMenu() {

@@ -45,9 +45,8 @@ public class prefabscript : MonoBehaviour {
 	void createBall(int n = 1) {
 		for (int i = 0; i < n; i++) {
 			float rFace = Random.Range(1, 5);
-			float rPosition = Random.Range(-size / 2, size / 2);
-			// Vector3 aFace;
-			// Vector3 aPosition;
+			float rPosition = Random.Range(0, 10);
+			rPosition = -size / 2 + 5 + 10 * rPosition; 			
 
 			if (rFace == 1) {
 				aFace = new Vector3(0, 0, 1);
