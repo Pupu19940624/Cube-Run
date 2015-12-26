@@ -106,8 +106,8 @@ public class CharacterMovement : MonoBehaviour {
 	}
 
 	public static void GameOver() {
+		Debug.Log("Die!");
 		if (!DebugMode) {
-			Debug.Log("Die!");
 			CharacterMovement.animator.SetTrigger("Die");
 			canMove = false;
 

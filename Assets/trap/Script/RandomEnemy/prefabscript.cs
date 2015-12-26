@@ -67,14 +67,18 @@ public class prefabscript : MonoBehaviour {
 
 			GameObject warning = (GameObject) Instantiate (warningMark, aPosition, Quaternion.identity);
 			
-			Invoke("createBallPrefab", 1);
+			// Invoke("createBallPrefab", 1);
+			StartCoroutine(createBallPrefab(aPosition, aFace));
 
 			Destroy(warning, 1);
 		}
 		
 	}
 
-	void createBallPrefab() {
+	IEnumerator createBallPrefab(Vector3 aPosition, Vector3 aFace)
+	{
+		yield return new WaitForSeconds(1f);
+		
 		GameObject ball = (GameObject) Instantiate (Obj_Creat, aPosition, Quaternion.identity);
 		ball.GetComponent<Rigidbody>().AddForce(aFace * ballSpeed);
 		ball.GetComponent<Rigidbody>().AddTorque(aFace * 100, ForceMode.Impulse);
@@ -83,4 +87,5 @@ public class prefabscript : MonoBehaviour {
 
 		Score.score += 1;
 	}
+
 }
