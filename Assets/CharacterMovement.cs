@@ -14,9 +14,7 @@ public class CharacterMovement : MonoBehaviour {
 	float minSpeed = 0.0f;
 	Vector3 moveToward;
 	CharacterController characterController;
-
-	public GameObject shadow;
-
+	
 	public GameObject trail;
 	public float trailInterval = 0.1f;
 
@@ -69,8 +67,6 @@ public class CharacterMovement : MonoBehaviour {
 
 		if (CrossPlatformInputManager.GetButtonDown("Jump") || Input.GetKeyDown("space") && canMove) {
 			if (doubleJump || characterController.isGrounded) {
-				if (!doubleJump) Instantiate(shadow, new Vector3(gameObject.transform.position.x, 0.05f, gameObject.transform.position.z), gameObject.transform.rotation);
-
 				animator.SetTrigger(doubleJump ? "DoubleJump" : "Jump");
 				speed = 0;
 				moveToward.y = jumpSpeed;
