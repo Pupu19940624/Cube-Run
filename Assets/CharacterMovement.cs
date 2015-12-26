@@ -83,7 +83,7 @@ public class CharacterMovement : MonoBehaviour {
 				animator.SetFloat("WalkSpeed", speed);
 				doubleJump = !doubleJump;
 
-				// audio.PlayOneShot(jumpSound);
+				audio.PlayOneShot(jumpSound);
 				
 			}
 		}
