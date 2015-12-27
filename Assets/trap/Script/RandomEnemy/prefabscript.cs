@@ -4,10 +4,10 @@ using System.Collections;
 public class prefabscript : MonoBehaviour {
 	public GameObject Obj_Creat;//要生成的物件
 	public GameObject bouncingBall;
+	public GameObject groundTrap;
+
 	public GameObject warningMark;
 	public float f_Time=1.0f; //生成間隔
-	public Transform Tran_CreatPoint;//物件要生成的位置
-	public Vector3 V3_Random;//隨機生成位置
 	public GameObject canvas;
 
 	GameObject ground;
@@ -43,8 +43,9 @@ public class prefabscript : MonoBehaviour {
 			}
 			else if (wave >= 13) {
 				createBouncingBall(bouncingBallTimingFunction(Time.time - Score.gameTime));
-			} 
-			
+			}
+			createGroundTrap(Random.Range(0, 2));
+
 			f_Time=1.0f;
 			wave += 1;
 		}
@@ -109,6 +110,24 @@ public class prefabscript : MonoBehaviour {
 		}
 	}
 
+	void createGroundTrap(int n = 1) {
+		int N = 9;
+		for (int i = 0; i < n; i++) {
+			float rx = Random.Range(0, N);
+			float rz = Random.Range(0, N);
+			rx = -size / 2 + size / N / 2 + (size / N) * rx;
+			rz = -size / 2 + size / N / 2 + (size / N) * rz;
+
+			aPosition = new Vector3(rx, 0, rz);
+
+			GameObject warning = (GameObject) Instantiate (warningMark, aPosition, Quaternion.identity);
+
+			StartCoroutine(createGroundTrapPrefab(aPosition));
+
+			Destroy(warning, 1);
+		}
+	}
+
 	IEnumerator createBallPrefab(Vector3 aPosition, Vector3 aFace)
 	{
 		yield return new WaitForSeconds(1f);
@@ -130,6 +149,15 @@ public class prefabscript : MonoBehaviour {
 		ball.GetComponent<Rigidbody>().AddForce(aFace * bouncingBallSpeed, ForceMode.Impulse);
 
 		Destroy(ball, 3.5f);
+
+		Score.score += 1;
+	}
+
+	IEnumerator createGroundTrapPrefab(Vector3 aPosition)
+	{
+		yield return new WaitForSeconds(1f);
+		
+		GameObject trap = (GameObject) Instantiate (groundTrap, aPosition, Quaternion.identity);
 
 		Score.score += 1;
 	}
