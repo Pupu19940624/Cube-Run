@@ -1,8 +1,8 @@
-﻿using UnityEngine;
+﻿/*using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
  
-/*
+
  
 Produces an simple tracking/letter-spacing effect on UI Text components.
  
@@ -43,9 +43,9 @@ break down entirely, but it doesn't really do what you'd want either.
  
 */
  
-namespace UnityEngine.UI
+/*namespace UnityEngine.UI
 {
-    [AddComponentMenu("UI/Effects/Letter Spacing", 14)]
+   /* [AddComponentMenu("UI/Effects/Letter Spacing", 14)]
 #if UNITY_5_2
     public class LetterSpacing : BaseMeshEffect
 #else
@@ -264,5 +264,4 @@ namespace UnityEngine.UI
         }
 #endif
     }
-}
- 
+}*/
