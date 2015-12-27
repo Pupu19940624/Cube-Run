@@ -46,7 +46,7 @@ break down entirely, but it doesn't really do what you'd want either.
 namespace UnityEngine.UI
 {
     [AddComponentMenu("UI/Effects/Letter Spacing", 14)]
-#if UNITY_5_2
+#if UNITY_5_2_1
     public class LetterSpacing : BaseMeshEffect
 #else
     public class LetterSpacing : BaseVertexEffect
@@ -76,7 +76,7 @@ namespace UnityEngine.UI
             }
         }
  
-#if UNITY_5_2
+#if UNITY_5_2_1
         public override void ModifyMesh(Mesh mesh)
         {
             if (!this.IsActive())
@@ -98,7 +98,7 @@ namespace UnityEngine.UI
         }
 #endif
  
-#if UNITY_5_2
+#if UNITY_5_2_1
         public void ModifyVertices(List<UIVertex> verts)
         {
             if (!IsActive()) return;
