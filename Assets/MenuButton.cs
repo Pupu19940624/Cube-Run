@@ -14,7 +14,7 @@ public class MenuButton : MonoBehaviour {
 	}
 
 	public void PlayGame() {
-		Application.LoadLevel("Scene");
+		Application.LoadLevel("Loading");
 	}
 
 	public void QuitGame() {
