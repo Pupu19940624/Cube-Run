@@ -5,9 +5,10 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class CharacterMovement : MonoBehaviour {
 
-	public static bool DebugMode = true;
+	public static bool DebugMode = false;
 
-	public float movementSpeed = 25.0f;
+	public static float movementSpeed = 25.0f;
+	public static float timer = 0f;
 	public float jumpSpeed = 20.0f;
 	public float gravity = 40.0f;
 	public static Animator animator;
@@ -92,6 +93,14 @@ public class CharacterMovement : MonoBehaviour {
 		
 		if (canMove) {
 			characterController.Move(moveToward * Time.deltaTime);
+		}
+
+		if (timer > 0) {
+			timer -= Time.deltaTime;
+		} 
+		else {
+			movementSpeed = 25.0f;
+			timer = 0f;
 		}
 		
 		

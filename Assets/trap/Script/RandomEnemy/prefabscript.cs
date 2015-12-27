@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class prefabscript : MonoBehaviour {
 	public GameObject Obj_Creat;//要生成的物件
 	public GameObject bouncingBall;
 	public GameObject groundTrap;
+	public GameObject metero;
 
 	public GameObject warningMark;
 	public float f_Time=1.0f; //生成間隔
