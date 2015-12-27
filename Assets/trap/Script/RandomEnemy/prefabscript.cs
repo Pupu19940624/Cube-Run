@@ -5,6 +5,7 @@ public class prefabscript : MonoBehaviour {
 	public GameObject Obj_Creat;//要生成的物件
 	public GameObject bouncingBall;
 	public GameObject groundTrap;
+	public GameObject mud;
 	public GameObject metero;
 
 	public GameObject warningMark;
@@ -46,6 +47,7 @@ public class prefabscript : MonoBehaviour {
 				createBouncingBall(bouncingBallTimingFunction(Time.time - Score.gameTime));
 			}
 			createGroundTrap(Random.Range(0, 2));
+			createMud(Random.Range(0, 2));
 
 			f_Time=1.0f;
 			wave += 1;
@@ -129,6 +131,24 @@ public class prefabscript : MonoBehaviour {
 		}
 	}
 
+	void createMud(int n = 1) {
+		int N = 9;
+		for (int i = 0; i < n; i++) {
+			float rx = Random.Range(0, N);
+			float rz = Random.Range(0, N);
+			rx = -size / 2 + size / N / 2 + (size / N) * rx;
+			rz = -size / 2 + size / N / 2 + (size / N) * rz;
+
+			aPosition = new Vector3(rx, 0, rz);
+
+			GameObject warning = (GameObject) Instantiate (warningMark, aPosition, Quaternion.identity);
+
+			StartCoroutine(createMudPrefab(aPosition));
+
+			Destroy(warning, 1);
+		}
+	}
+
 	IEnumerator createBallPrefab(Vector3 aPosition, Vector3 aFace)
 	{
 		yield return new WaitForSeconds(1f);
@@ -159,6 +179,15 @@ public class prefabscript : MonoBehaviour {
 		yield return new WaitForSeconds(1f);
 		
 		GameObject trap = (GameObject) Instantiate (groundTrap, aPosition, Quaternion.identity);
+
+		Score.score += 1;
+	}
+
+	IEnumerator createMudPrefab(Vector3 aPosition)
+	{
+		yield return new WaitForSeconds(1f);
+		
+		GameObject trap = (GameObject) Instantiate (mud, aPosition, Quaternion.identity);
 
 		Score.score += 1;
 	}

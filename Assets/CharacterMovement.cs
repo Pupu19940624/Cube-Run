@@ -24,6 +24,7 @@ public class CharacterMovement : MonoBehaviour {
 	public static CharacterMovement cm;
 
 	public static bool canMove = true;
+	public static bool isMud = false;
 
 	bool doubleJump = false;
 
@@ -99,11 +100,19 @@ public class CharacterMovement : MonoBehaviour {
 			timer -= Time.deltaTime;
 		} 
 		else {
-			movementSpeed = 25.0f;
+			// movementSpeed = 25.0f; 
 			timer = 0f;
 		}
 		
-		
+		if (isMud) {
+			movementSpeed = 10.0f;
+			isMud = false;
+			Invoke("SpeedUp", 3f);
+		}
+	}
+
+	void SpeedUp() {
+		movementSpeed = 25.0f;
 	}
 
 	void CreateFootPrint () {
