@@ -5,9 +5,18 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class CharacterMovement : MonoBehaviour {
 
+<<<<<<< HEAD
 	public float movementSpeed = 4.0f;
 	public float jumpSpeed = 8.0f;
 	public float gravity = 20.0f;
+=======
+	public static bool DebugMode = false;
+
+	public static float movementSpeed = 25.0f;
+	public static float timer = 0f;
+	public float jumpSpeed = 20.0f;
+	public float gravity = 40.0f;
+>>>>>>> 58f0bd89a7333b1c35dd1e3eb9ddb0bdec494765
 	public static Animator animator;
 	float speed = 0.0f;
 	float maxSpeed = 1.0f;
@@ -17,14 +26,29 @@ public class CharacterMovement : MonoBehaviour {
 
 	public GameObject trail;
 	public float trailInterval = 0.1f;
+<<<<<<< HEAD
+=======
+
+	public static CharacterMovement cm;
+
+	public static bool canMove = true;
+	public static bool isMud = false;
+>>>>>>> 58f0bd89a7333b1c35dd1e3eb9ddb0bdec494765
 
 	bool doubleJump = false;
 
+	public AudioSource audio;
+	public AudioClip stepSound;
+	public AudioClip jumpSound;
+
 	// Use this for initialization
 	void Start () {
+		cm = this;
+		canMove = true;
 		animator = GetComponent<Animator>();
 		moveToward = Vector3.zero;
 		characterController = GetComponent<CharacterController>();
+		audio = GetComponent<AudioSource>();
 
 		InvokeRepeating("CreateFootPrint", 0.0f, trailInterval);
 	}
@@ -38,12 +62,17 @@ public class CharacterMovement : MonoBehaviour {
 		// gameObject.transform.Translate(direction * movementSpeed * Time.deltaTime);
 
 		
-		if (characterController.isGrounded) {
+		if (characterController.isGrounded && canMove) {
+			doubleJump = false;
+
 			//// 360 degree
 			if (CrossPlatformInputManager.GetAxis("Horizontal") != 0 || CrossPlatformInputManager.GetAxis("Vertical") != 0) {
 				speed = 1;
 				// speed = Mathf.Clamp(speed + Time.deltaTime, minSpeed, maxSpeed);
 				animator.SetFloat("WalkSpeed", speed);
+				if (!audio.isPlaying) {
+					audio.PlayOneShot(stepSound);
+				}
 			}
 			else {
 				speed = 0;
@@ -57,21 +86,42 @@ public class CharacterMovement : MonoBehaviour {
 			moveToward = new Vector3(gameObject.transform.forward.x, 0, gameObject.transform.forward.z) * speed * movementSpeed;
 		}
 
-		if (CrossPlatformInputManager.GetButtonDown("Jump") || Input.GetKeyDown("space")) {
+		if (CrossPlatformInputManager.GetButtonDown("Jump") || Input.GetKeyDown("space") && canMove) {
 			if (doubleJump || characterController.isGrounded) {
-				Debug.Log("jump");
 				animator.SetTrigger(doubleJump ? "DoubleJump" : "Jump");
 				speed = 0;
 				moveToward.y = jumpSpeed;
 				animator.SetFloat("WalkSpeed", speed);
 				doubleJump = !doubleJump;
+
+				audio.PlayOneShot(jumpSound);
+				
 			}
 		}
 
 		moveToward.y -= gravity * Time.deltaTime;
 		
-		characterController.Move(moveToward * Time.deltaTime);
+		if (canMove) {
+			characterController.Move(moveToward * Time.deltaTime);
+		}
+
+		if (timer > 0) {
+			timer -= Time.deltaTime;
+		} 
+		else {
+			// movementSpeed = 25.0f; 
+			timer = 0f;
+		}
 		
+		if (isMud) {
+			movementSpeed = 10.0f;
+			isMud = false;
+			Invoke("SpeedUp", 3f);
+		}
+	}
+
+	void SpeedUp() {
+		movementSpeed = 25.0f;
 	}
 
 	void CreateFootPrint () {
@@ -82,4 +132,20 @@ public class CharacterMovement : MonoBehaviour {
 		Destroy(fp, 5);
 	}
 
+<<<<<<< HEAD
+=======
+	public static void GameOver() {
+		Debug.Log("Die!");
+		if (!DebugMode) {
+			CharacterMovement.animator.SetTrigger("Die");
+			canMove = false;
+
+			cm.Invoke("Back2MainMenu", 3);
+		}
+	}
+
+	void Back2MainMenu() {
+		Application.LoadLevel("MainMenu");
+	}
+>>>>>>> 58f0bd89a7333b1c35dd1e3eb9ddb0bdec494765
 }

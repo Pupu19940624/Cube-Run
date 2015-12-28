@@ -18,8 +18,7 @@ public class TrailCollider : MonoBehaviour {
 	void OnTriggerEnter(Collider other) {
 		if (other.gameObject.name == "Player") {
 			if (!firstTrigger) {
-				Debug.Log("Boom!");
-				CharacterMovement.animator.SetTrigger("Die");
+				CharacterMovement.GameOver();
 			}
 		}
 	}
