@@ -7,6 +7,7 @@ public class prefabscript : MonoBehaviour {
 	public GameObject groundTrap;
 	public GameObject mud;
 	public GameObject metero;
+	public GameObject invincibleItem;
 
 	public GameObject warningMark;
 	public float f_Time=1.0f; //生成間隔
@@ -48,6 +49,9 @@ public class prefabscript : MonoBehaviour {
 			}
 			createGroundTrap(Random.Range(0, 2));
 			createMud(Random.Range(0, 2));
+			if (wave % 5 == 1) {
+				createInvincible(1);
+			}
 
 			f_Time=1.0f;
 			wave += 1;
@@ -146,6 +150,20 @@ public class prefabscript : MonoBehaviour {
 			StartCoroutine(createMudPrefab(aPosition));
 
 			Destroy(warning, 1);
+		}
+	}
+
+	void createInvincible(int n = 1) {
+		int N = 9;
+		for (int i = 0; i < n; i++) {
+			float rx = Random.Range(0, N);
+			float rz = Random.Range(0, N);
+			rx = -size / 2 + size / N / 2 + (size / N) * rx;
+			rz = -size / 2 + size / N / 2 + (size / N) * rz;
+
+			aPosition = new Vector3(rx, 5f, rz);
+
+			GameObject item = (GameObject) Instantiate (invincibleItem, aPosition, Quaternion.identity);
 		}
 	}
 
