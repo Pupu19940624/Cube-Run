@@ -8,7 +8,8 @@ public class CharacterMovement : MonoBehaviour {
 	public static bool DebugMode = false;
 
 	public static float movementSpeed = 25.0f;
-	public static float timer = 0f;
+	public static float slowtimer = 0f;
+	public static float nodamagetimer = 0f;
 	public float jumpSpeed = 20.0f;
 	public float gravity = 40.0f;
 	public static Animator animator;
@@ -95,16 +96,24 @@ public class CharacterMovement : MonoBehaviour {
 		if (canMove) {
 			characterController.Move(moveToward * Time.deltaTime);
 		}
-
-		if (timer > 0) {
-			timer -= Time.deltaTime;
+		//check slow
+		if (slowtimer > 0) {
+			slowtimer -= Time.deltaTime;
 		} 
 		else {
 			// movementSpeed = 25.0f; 
-			timer = 0f;
+			slowtimer = 0f;
 		}
-		
-		if (isMud) {
+		//check nodamage
+		if (nodamagetimer > 0) {
+			nodamagetimer -= Time.deltaTime;
+		} 
+		else {
+			DebugMode = false;
+			nodamagetimer = 0f;
+		}
+
+		if (isMud && DebugMode == false) {
 			movementSpeed = 10.0f;
 			isMud = false;
 			Invoke("SpeedUp", 3f);

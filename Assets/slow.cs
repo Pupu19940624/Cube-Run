@@ -9,10 +9,10 @@ public class slow : MonoBehaviour {
 	}
 	void OnTriggerEnter (Collider other)
 	{
-		if(other.gameObject.name == "Player")
+		if(other.gameObject.name == "Player" && CharacterMovement.DebugMode != true)
 		{
 			CharacterMovement.movementSpeed = 12.5f;
-			CharacterMovement.timer = slowtime;
+			CharacterMovement.slowtimer = slowtime;
 		}
 	}
 	// Update is called once per frame
