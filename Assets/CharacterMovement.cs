@@ -4,14 +4,19 @@ using System;
 using UnityStandardAssets.CrossPlatformInput;
 
 public class CharacterMovement : MonoBehaviour {
+<<<<<<< HEAD
+	public float movementSpeed = 4.0f;
+	public float jumpSpeed = 8.0f;
+	public float gravity = 20.0f;
+=======
 
 /*	public float movementSpeed = 4.0f;
 	public float jumpSpeed = 8.0f;
 	public float gravity = 20.0f;*/
 
-	public static bool theRealDebugMode = true;
-
+>>>>>>> fabf084ee286ab5681d46c415429b41e352cf3d9
 	public static bool DebugMode = false;
+
 	public static float movementSpeed = 25.0f;
 	public static float slowtimer = 0f;
 	public static float nodamagetimer = 0f;
@@ -35,7 +40,7 @@ public class CharacterMovement : MonoBehaviour {
 	bool doubleJump = false;
 
 	public AudioSource audio;
-	// public AudioClip stepSound;
+	public AudioClip stepSound;
 	public AudioClip jumpSound;
 
 	// Use this for initialization
@@ -67,9 +72,9 @@ public class CharacterMovement : MonoBehaviour {
 				speed = 1;
 				// speed = Mathf.Clamp(speed + Time.deltaTime, minSpeed, maxSpeed);
 				animator.SetFloat("WalkSpeed", speed);
-				// if (!audio.isPlaying) {
-				// 	audio.PlayOneShot(stepSound);
-				// }
+				if (!audio.isPlaying) {
+					audio.PlayOneShot(stepSound);
+				}
 			}
 			else {
 				speed = 0;
@@ -139,7 +144,7 @@ public class CharacterMovement : MonoBehaviour {
 
 	public static void GameOver() {
 		Debug.Log("Die!");
-		if (!DebugMode && !theRealDebugMode) {
+		if (!DebugMode) {
 			CharacterMovement.animator.SetTrigger("Die");
 			canMove = false;
 
@@ -150,5 +155,8 @@ public class CharacterMovement : MonoBehaviour {
 	void Back2MainMenu() {
 		Application.LoadLevel("MainMenu");
 	}
+<<<<<<< HEAD
+=======
 
+>>>>>>> fabf084ee286ab5681d46c415429b41e352cf3d9
 }

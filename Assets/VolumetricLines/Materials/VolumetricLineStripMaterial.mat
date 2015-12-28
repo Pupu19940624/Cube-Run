@@ -25,10 +25,6 @@ Material:
     m_Floats:
       data:
         first:
-          name: _InvFade
-        second: 1
-      data:
-        first:
           name: _LineWidth
         second: 44.6483917
       data:
@@ -39,6 +35,10 @@ Material:
         first:
           name: _LightSaberFactor
         second: .614285707
+      data:
+        first:
+          name: _InvFade
+        second: 1
     m_Colors:
       data:
         first:

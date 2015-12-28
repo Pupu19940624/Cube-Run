@@ -18,28 +18,14 @@ public class Settings : MonoBehaviour {
 	}
 
 	public void Pause() {
-		Time.timeScale = isPause ? 1.0F : 0.0F;
+		if (isPause) {
+			Time.timeScale = 1.0F;
+		}
+		else {
+			Time.timeScale = 0.0F;
+		}
 		isPause = !isPause;
+
 		settingsPanel.SetActive(isPause);
-	}
-
-	public void MainMenu() {
-		Application.LoadLevel("MainMenu");
-	}
-
-	public void Retry() {
-		isPause = false;
-		Time.timeScale = 1.0F;
-		Application.LoadLevel(Application.loadedLevel);
-	}
-
-	public void OnBgMusicChange(float value) {
-		AudioSource bg = GameObject.Find("Main Camera").GetComponent<AudioSource>();
-		bg.volume = value;
-	}
-
-	public void OnSoundChange(float value) {
-		AudioSource player = GameObject.Find("Player").GetComponent<AudioSource>();
-		player.volume = value;
 	}
 }

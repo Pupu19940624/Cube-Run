@@ -1,10 +1,15 @@
 fileFormatVersion: 2
 guid: c0fa39a92eb0f4e29a63473190cbd340
 <<<<<<< HEAD
+timeCreated: 1451201782
+licenseType: Free
+=======
+<<<<<<< HEAD
 =======
 timeCreated: 1451201782
 licenseType: Free
 >>>>>>> 58f0bd89a7333b1c35dd1e3eb9ddb0bdec494765
+>>>>>>> e04155f3a24fd56acf57220e6d9781849b5369d1
 TextureImporter:
   fileIDToRecycleName: {}
   serializedVersion: 2
@@ -12,10 +17,14 @@ TextureImporter:
     mipMapMode: 0
     enableMipMap: 1
 <<<<<<< HEAD
+    linearTexture: 1
+=======
+<<<<<<< HEAD
     linearTexture: 0
 =======
     linearTexture: 1
 >>>>>>> 58f0bd89a7333b1c35dd1e3eb9ddb0bdec494765
+>>>>>>> e04155f3a24fd56acf57220e6d9781849b5369d1
     correctGamma: 0
     fadeOut: 0
     borderMipMap: 0
@@ -24,10 +33,14 @@ TextureImporter:
   bumpmap:
     convertToNormalMap: 0
 <<<<<<< HEAD
+    externalNormalMap: 1
+=======
+<<<<<<< HEAD
     externalNormalMap: 0
 =======
     externalNormalMap: 1
 >>>>>>> 58f0bd89a7333b1c35dd1e3eb9ddb0bdec494765
+>>>>>>> e04155f3a24fd56acf57220e6d9781849b5369d1
     heightScale: .25
     normalMapFilter: 0
   isReadable: 0
@@ -49,9 +62,13 @@ TextureImporter:
   rGBM: 0
   compressionQuality: 50
 <<<<<<< HEAD
+  allowsAlphaSplitting: 0
+=======
+<<<<<<< HEAD
 =======
   allowsAlphaSplitting: 0
 >>>>>>> 58f0bd89a7333b1c35dd1e3eb9ddb0bdec494765
+>>>>>>> e04155f3a24fd56acf57220e6d9781849b5369d1
   spriteMode: 0
   spriteExtrude: 1
   spriteMeshType: 1
@@ -61,10 +78,14 @@ TextureImporter:
   spritePixelsToUnits: 100
   alphaIsTransparency: 0
 <<<<<<< HEAD
+  textureType: 1
+=======
+<<<<<<< HEAD
   textureType: -1
 =======
   textureType: 1
 >>>>>>> 58f0bd89a7333b1c35dd1e3eb9ddb0bdec494765
+>>>>>>> e04155f3a24fd56acf57220e6d9781849b5369d1
   buildTargetSettings: []
   spriteSheet:
     sprites: []
