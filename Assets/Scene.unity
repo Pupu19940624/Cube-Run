@@ -3571,6 +3571,8 @@ MonoBehaviour:
   Obj_Creat: {fileID: 196624, guid: eb7a9d1f591f44074b488f8952b1cac6, type: 2}
   bouncingBall: {fileID: 111184, guid: 99a5988ca1ade44949661011c3fe3393, type: 2}
   groundTrap: {fileID: 123186, guid: 8f80c5b1df3134096a72a6584295d646, type: 2}
+  mud: {fileID: 167228, guid: a24761d5e031c4e978975b0358ca1294, type: 2}
+  metero: {fileID: 0}
   warningMark: {fileID: 126090, guid: 2419ccdb0b0694bc69a5d6d3df28000f, type: 2}
   f_Time: 1
   canvas: {fileID: 0}
@@ -3975,7 +3977,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91df70ecd3c9f42c285ebc19c264396d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 25
   jumpSpeed: 25
   gravity: 40
   trail: {fileID: 133634, guid: fe08c6b0054b04a52822ac9781ddf73b, type: 2}
