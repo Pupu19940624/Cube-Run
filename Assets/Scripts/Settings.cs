@@ -42,4 +42,9 @@ public class Settings : MonoBehaviour {
 		AudioSource player = GameObject.Find("Player").GetComponent<AudioSource>();
 		player.volume = value;
 	}
+
+	public void togglePanel() {
+		settingsPanel.SetActive(!settingsPanel.activeSelf);
+	}
 }
+
