@@ -45,23 +45,23 @@ public class prefabscript : MonoBehaviour {
 			f_Time -= Time.deltaTime;
 		} 
 		else{
-			if (wave <= 10) {
+			if (wave >= 5 && wave <= 12) {
 				createBall(timingFunction(Time.time - Score.gameTime));
 			}
-			else if (wave >= 13 && wave < 23) {
+			else if (wave >= 16 && wave < 25) {
 				createBouncingBall(bouncingBallTimingFunction(Time.time - Score.gameTime));
 			}
-			else if(wave >= 26 && wave < 40){
+			else if(wave >= 27 && wave < 39){
 				createBall(timingFunction(number));
 				createBouncingBall(bouncingBallTimingFunction(number));
 				number++;
 			}
-			else if(wave >= 43 && wave < 55){
+			else if(wave >= 41 && wave < 54){
 				createBall(timingFunction(number));
 				createBouncingBall(bouncingBallTimingFunction(number));
 				number++;
 			}
-			else if(wave >60){
+			else if(wave >= 56){
 				createBall(timingFunction(number));
 				createBouncingBall(bouncingBallTimingFunction(number));
 				number++;
