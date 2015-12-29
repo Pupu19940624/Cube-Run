@@ -2,6 +2,7 @@
 using System.Collections;
 using System;
 using UnityStandardAssets.CrossPlatformInput;
+using UnityEngine.UI;
 
 public class CharacterMovement : MonoBehaviour {
 
@@ -9,7 +10,7 @@ public class CharacterMovement : MonoBehaviour {
 	public float jumpSpeed = 8.0f;
 	public float gravity = 20.0f;*/
 
-	public static bool theRealDebugMode = true;
+	public static bool theRealDebugMode = false;
 
 	public static bool DebugMode = false;
 	public static float movementSpeed = 25.0f;
@@ -37,6 +38,9 @@ public class CharacterMovement : MonoBehaviour {
 	public AudioSource audio;
 	// public AudioClip stepSound;
 	public AudioClip jumpSound;
+
+	public GameObject GameOverCanvas;
+	public Button PauseButton;
 
 	// Use this for initialization
 	void Start () {
@@ -143,12 +147,19 @@ public class CharacterMovement : MonoBehaviour {
 			CharacterMovement.animator.SetTrigger("Die");
 			canMove = false;
 
+			if (Score.score > PlayerPrefs.GetInt("highScore")) {
+				PlayerPrefs.SetInt("highScore", Score.score);
+			}
 			cm.Invoke("Back2MainMenu", 3);
 		}
 	}
 
 	void Back2MainMenu() {
-		Application.LoadLevel("MainMenu");
+		GameOverCanvas.SetActive(true);
+		Settings.isPause = true;
+		Time.timeScale = 0.0F;
+		PauseButton.interactable = false;
+		// Application.LoadLevel("MainMenu");
 	}
 
 }

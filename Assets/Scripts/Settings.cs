@@ -8,11 +8,17 @@ public class Settings : MonoBehaviour {
 	public GameObject settingsPanel;
 	public GameObject bgmSlider;
 	public GameObject soundSlider;
+	public Text highScore;
+	public Button PauseButton;
 
 	// Use this for initialization
 	void Start () {
 		isPause = false;
 		settingsPanel.SetActive(isPause);
+		Time.timeScale = 1.0F;
+		if (PauseButton) {
+			PauseButton.interactable = true;
+		}
 
 
 		if (!PlayerPrefs.HasKey("bgmVolume")) {
@@ -21,11 +27,17 @@ public class Settings : MonoBehaviour {
 		if (!PlayerPrefs.HasKey("soundVolume")) {
 			PlayerPrefs.SetFloat("soundVolume", 1.0f);
 		}
+		if (!PlayerPrefs.HasKey("highScore")) {
+			PlayerPrefs.SetInt("highScore", 1);
+		}
 
 		if (bgmSlider && soundSlider) {
 			bgmSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("bgmVolume");
 			soundSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("soundVolume");
 		} 
+		if (highScore) {
+			highScore.text = "High Score: " + PlayerPrefs.GetInt("highScore");
+		}
 	}
 	
 	// Update is called once per frame
