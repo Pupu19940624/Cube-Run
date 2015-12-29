@@ -49,6 +49,9 @@ public class CharacterMovement : MonoBehaviour {
 	public GameObject GameOverCanvas;
 	public Button PauseButton;
 
+	float trailTime = 1f;
+	int nextScore = 100;
+
 	// Use this for initialization
 	void Start () {
 		cm = this;
@@ -145,6 +148,12 @@ public class CharacterMovement : MonoBehaviour {
 			isMud = false;
 			Invoke("SpeedUp", 3f);
 		}
+
+		if (Score.score > nextScore && trailTime < 10) {
+			trailTime += 0.5f;
+			gameObject.GetComponent<TrailRenderer>().time = trailTime;
+			nextScore += 100;
+		}
 	}
 
 	void SpeedUp() {
@@ -156,7 +165,7 @@ public class CharacterMovement : MonoBehaviour {
 			Debug.Log("under");
 		}
 		var fp = Instantiate(trail, gameObject.transform.position + new Vector3(0.0f, 0.5f, 0.0f), gameObject.transform.rotation);
-		Destroy(fp, 5);
+		Destroy(fp, trailTime);
 	}
 
 	public static void GameOver() {
