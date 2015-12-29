@@ -1749,6 +1749,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 6836f5eaa96f845c4ac0909f84272556, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6836f5eaa96f845c4ac0909f84272556, type: 2}
   m_IsPrefabParent: 0
@@ -5904,6 +5908,7 @@ MonoBehaviour:
   trail: {fileID: 133634, guid: fe08c6b0054b04a52822ac9781ddf73b, type: 2}
   trailInterval: .100000001
   audio: {fileID: 0}
+  mainCamera: {fileID: 1327541441}
   jumpSound: {fileID: 8300000, guid: f54f5fb6372d54924b7a50c2af004717, type: 3}
   GameOverCanvas: {fileID: 2106518313}
   PauseButton: {fileID: 1315943898}
