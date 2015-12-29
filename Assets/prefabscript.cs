@@ -199,7 +199,7 @@ public class prefabscript : MonoBehaviour {
 
 		Destroy(ball, 2);
 
-		Score.score += 10;
+		if (CharacterMovement.canMove) Score.score += 10;
 	}
 
 	IEnumerator createBouncingBallPrefab(Vector3 aPosition, Vector3 aFace)
@@ -211,7 +211,7 @@ public class prefabscript : MonoBehaviour {
 
 		Destroy(ball, 3.5f);
 
-		Score.score += 10;
+		if (CharacterMovement.canMove) Score.score += 10;
 	}
 
 	IEnumerator createGroundTrapPrefab(Vector3 aPosition)
@@ -220,7 +220,7 @@ public class prefabscript : MonoBehaviour {
 		
 		GameObject trap = (GameObject) Instantiate (groundTrap, aPosition, Quaternion.identity);
 
-		Score.score += 10;
+		if (CharacterMovement.canMove) Score.score += 10;
 	}
 
 	IEnumerator createMudPrefab(Vector3 aPosition)
@@ -229,7 +229,7 @@ public class prefabscript : MonoBehaviour {
 		
 		GameObject trap = (GameObject) Instantiate (mud, aPosition, Quaternion.identity);
 
-		Score.score += 10;
+		if (CharacterMovement.canMove) Score.score += 10;
 	}
 
 }

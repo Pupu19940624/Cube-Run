@@ -33,6 +33,8 @@ public class CharacterMovement : MonoBehaviour {
 	public static bool canMove = true;
 	public static bool isMud = false;
 
+	float baseScoreInterval = 1.0f;
+
 	Renderer rend;
 
 	bool doubleJump = false;
@@ -80,7 +82,15 @@ public class CharacterMovement : MonoBehaviour {
 				// if (!audio.isPlaying) {
 				// 	audio.PlayOneShot(stepSound);
 				// }
-			}
+
+				if (baseScoreInterval > 0) {
+					baseScoreInterval -= Time.deltaTime;
+				}
+				else {
+					baseScoreInterval = 1.0f;
+					Score.score += 3;
+				}
+ 			}
 			else {
 				speed = 0;
 				// speed = Mathf.Clamp(speed - Time.deltaTime, minSpeed, maxSpeed);

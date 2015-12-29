@@ -115,6 +115,13 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
+          name: _Detail
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
           name: _ParallaxMap
         second:
           m_Texture: {fileID: 0}
@@ -195,13 +202,6 @@ Material:
           name: _DownTex
         second:
           m_Texture: {fileID: 2800000, guid: c0fa39a92eb0f4e29a63473190cbd340, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _Detail
-        second:
-          m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -344,7 +344,7 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: .709803939, g: .596078455, b: .596078455, a: 1}
+        second: {r: .121568628, g: .36470589, b: .694117665, a: 1}
       data:
         first:
           name: _Tint
