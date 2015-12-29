@@ -33,6 +33,8 @@ public class CharacterMovement : MonoBehaviour {
 	public static bool canMove = true;
 	public static bool isMud = false;
 
+	Renderer rend;
+
 	bool doubleJump = false;
 
 	public AudioSource audio;
@@ -124,6 +126,8 @@ public class CharacterMovement : MonoBehaviour {
 		else {
 			DebugMode = false;
 			nodamagetimer = 0f;
+			rend = GameObject.Find("Ciccio_LOD0").GetComponent<SkinnedMeshRenderer>();
+			rend.materials[0].shader = Shader.Find("Legacy Shaders/Self-Illumin/Bumped Diffuse");
 		}
 
 		if (isMud && DebugMode == false) {
