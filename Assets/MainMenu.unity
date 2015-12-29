@@ -392,7 +392,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1479308056}
         m_MethodName: togglePanel
         m_Mode: 1
         m_Arguments:
@@ -701,7 +701,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1479308056}
         m_MethodName: togglePanel
         m_Mode: 1
         m_Arguments:
@@ -1542,7 +1542,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1479308056}
         m_MethodName: OnSoundChange
         m_Mode: 0
         m_Arguments:
@@ -2337,7 +2337,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1479308056}
         m_MethodName: OnBgMusicChange
         m_Mode: 0
         m_Arguments:
