@@ -10,6 +10,7 @@ public class Settings : MonoBehaviour {
 	public GameObject soundSlider;
 	public Text highScore;
 	public Button PauseButton;
+	public AudioSource audio;
 
 	// Use this for initialization
 	void Start () {
@@ -38,6 +39,8 @@ public class Settings : MonoBehaviour {
 		if (highScore) {
 			highScore.text = "High Score: " + PlayerPrefs.GetInt("highScore");
 		}
+
+		audio = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -45,19 +48,28 @@ public class Settings : MonoBehaviour {
 	
 	}
 
+	void Click() {
+		if (audio) {
+			audio.Play();
+		}
+	}
+
 	public void Pause() {
+		Click();
 		Time.timeScale = isPause ? 1.0F : 0.0F;
 		isPause = !isPause;
 		settingsPanel.SetActive(isPause);
 	}
 
 	public void MainMenu() {
+		Click();
 		isPause = false;
 		Time.timeScale = 1.0F;
 		Application.LoadLevel("MainMenu");
 	}
 
 	public void Retry() {
+		Click();
 		isPause = false;
 		Time.timeScale = 1.0F;
 		Application.LoadLevel(Application.loadedLevel);
@@ -80,6 +92,7 @@ public class Settings : MonoBehaviour {
 	}
 
 	public void togglePanel() {
+		Click();
 		settingsPanel.SetActive(!settingsPanel.activeSelf);
 	}
 }

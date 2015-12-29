@@ -36,6 +36,8 @@ public class CharacterMovement : MonoBehaviour {
 	bool doubleJump = false;
 
 	public AudioSource audio;
+	public GameObject mainCamera;
+	public static AudioSource bgAudio;
 	// public AudioClip stepSound;
 	public AudioClip jumpSound;
 
@@ -50,6 +52,7 @@ public class CharacterMovement : MonoBehaviour {
 		moveToward = Vector3.zero;
 		characterController = GetComponent<CharacterController>();
 		audio = GetComponent<AudioSource>();
+		bgAudio = mainCamera.GetComponent<AudioSource>();
 
 		InvokeRepeating("CreateFootPrint", 0.0f, trailInterval);
 	}
@@ -144,6 +147,7 @@ public class CharacterMovement : MonoBehaviour {
 	public static void GameOver() {
 		Debug.Log("Die!");
 		if (!DebugMode && !theRealDebugMode) {
+			bgAudio.Stop();
 			CharacterMovement.animator.SetTrigger("Die");
 			canMove = false;
 
