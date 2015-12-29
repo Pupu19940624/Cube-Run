@@ -5910,6 +5910,7 @@ MonoBehaviour:
   audio: {fileID: 0}
   mainCamera: {fileID: 1327541441}
   jumpSound: {fileID: 8300000, guid: f54f5fb6372d54924b7a50c2af004717, type: 3}
+  gameover: {fileID: 8300000, guid: 8b45169ea569e434d9886ce321c7df6b, type: 3}
   GameOverCanvas: {fileID: 2106518313}
   PauseButton: {fileID: 1315943898}
 --- !u!143 &1719012843

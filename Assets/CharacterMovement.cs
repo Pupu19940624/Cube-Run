@@ -40,6 +40,7 @@ public class CharacterMovement : MonoBehaviour {
 	public static AudioSource bgAudio;
 	// public AudioClip stepSound;
 	public AudioClip jumpSound;
+	public AudioClip gameover;
 
 	public GameObject GameOverCanvas;
 	public Button PauseButton;
@@ -148,6 +149,7 @@ public class CharacterMovement : MonoBehaviour {
 		Debug.Log("Die!");
 		if (!DebugMode && !theRealDebugMode) {
 			bgAudio.Stop();
+			cm.audio.PlayOneShot(cm.gameover);
 			CharacterMovement.animator.SetTrigger("Die");
 			canMove = false;
 
