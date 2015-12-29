@@ -32,6 +32,9 @@ public class prefabscript : MonoBehaviour {
 		canvas = GameObject.Find("Canvas");
 
 		wave = 0;
+
+		gameObject.GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("bgmVolume");
+		GameObject.Find("Player").GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("soundVolume");
 	}
 	
 	// Update is called once per frame

@@ -1029,6 +1029,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settingsPanel: {fileID: 536975918}
+  bgmSlider: {fileID: 1183494491}
+  soundSlider: {fileID: 1309107158}
 --- !u!1 &346846339
 GameObject:
   m_ObjectHideFlags: 0
@@ -5058,6 +5060,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settingsPanel: {fileID: 0}
+  bgmSlider: {fileID: 0}
+  soundSlider: {fileID: 0}
 --- !u!1 &1633981308
 GameObject:
   m_ObjectHideFlags: 0
@@ -5863,10 +5867,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1344601363}
   m_RootOrder: 2
-  m_AnchorMin: {x: .5, y: .5}
-  m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -253, y: 160}
-  m_SizeDelta: {x: 195, y: 74}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: .5, y: 1}
+  m_AnchoredPosition: {x: -72.75, y: -20}
+  m_SizeDelta: {x: -165.5, y: 30}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &2072826507
 MonoBehaviour:
@@ -5894,7 +5898,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 3
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
