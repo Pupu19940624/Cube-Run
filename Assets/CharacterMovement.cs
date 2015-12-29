@@ -10,7 +10,7 @@ public class CharacterMovement : MonoBehaviour {
 	public float jumpSpeed = 8.0f;
 	public float gravity = 20.0f;*/
 
-	public static bool theRealDebugMode = false;
+	public static bool theRealDebugMode = true;
 
 	public static bool DebugMode = false;
 	public static float movementSpeed = 25.0f;

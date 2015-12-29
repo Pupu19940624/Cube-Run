@@ -14,7 +14,7 @@ public class nodamage : MonoBehaviour {
 			CharacterMovement.DebugMode = true;
 			CharacterMovement.nodamagetimer = nodamagetime;
 
-			Score.score += 1;
+			Score.score += 50;
 
 			Destroy(gameObject);
 		}

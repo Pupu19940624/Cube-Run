@@ -21,6 +21,7 @@ public class prefabscript : MonoBehaviour {
 	Vector3 aFace;
 	Vector3 aPosition;
 
+	int number = 1;
 	public int wave;
 
 	void Start () {
@@ -47,12 +48,30 @@ public class prefabscript : MonoBehaviour {
 			if (wave <= 10) {
 				createBall(timingFunction(Time.time - Score.gameTime));
 			}
-			else if (wave >= 13) {
+			else if (wave >= 13 && wave < 23) {
 				createBouncingBall(bouncingBallTimingFunction(Time.time - Score.gameTime));
 			}
+			else if(wave >= 26 && wave < 40){
+				createBall(timingFunction(number));
+				createBouncingBall(bouncingBallTimingFunction(number));
+				number++;
+			}
+			else if(wave >= 43 && wave < 55){
+				createBall(timingFunction(number));
+				createBouncingBall(bouncingBallTimingFunction(number));
+				number++;
+			}
+			else if(wave >60){
+				createBall(timingFunction(number));
+				createBouncingBall(bouncingBallTimingFunction(number));
+				number++;
+			}
 			createGroundTrap(Random.Range(0, 2));
-			createMud(Random.Range(0, 2));
+
 			if (wave % 5 == 1) {
+				createMud(Random.Range(0, 2));
+			}
+			if (wave % 10 == 1) {
 				createInvincible(1);
 			}
 
@@ -180,7 +199,7 @@ public class prefabscript : MonoBehaviour {
 
 		Destroy(ball, 2);
 
-		Score.score += 1;
+		Score.score += 10;
 	}
 
 	IEnumerator createBouncingBallPrefab(Vector3 aPosition, Vector3 aFace)
@@ -192,7 +211,7 @@ public class prefabscript : MonoBehaviour {
 
 		Destroy(ball, 3.5f);
 
-		Score.score += 1;
+		Score.score += 10;
 	}
 
 	IEnumerator createGroundTrapPrefab(Vector3 aPosition)
@@ -201,7 +220,7 @@ public class prefabscript : MonoBehaviour {
 		
 		GameObject trap = (GameObject) Instantiate (groundTrap, aPosition, Quaternion.identity);
 
-		Score.score += 1;
+		Score.score += 10;
 	}
 
 	IEnumerator createMudPrefab(Vector3 aPosition)
@@ -210,7 +229,7 @@ public class prefabscript : MonoBehaviour {
 		
 		GameObject trap = (GameObject) Instantiate (mud, aPosition, Quaternion.identity);
 
-		Score.score += 1;
+		Score.score += 10;
 	}
 
 }
