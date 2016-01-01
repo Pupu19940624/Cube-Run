@@ -3,14 +3,15 @@ using System.Collections;
 using System;
 using UnityStandardAssets.CrossPlatformInput;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
-public class CharacterMovement : MonoBehaviour {
+public class CharacterMovement : NetworkBehaviour {
 
 /*	public float movementSpeed = 4.0f;
 	public float jumpSpeed = 8.0f;
 	public float gravity = 20.0f;*/
 
-	public static bool theRealDebugMode = false;
+	public static bool theRealDebugMode = true;
 
 	public static bool DebugMode = false;
 	public static float movementSpeed = 25.0f;
@@ -73,7 +74,10 @@ public class CharacterMovement : MonoBehaviour {
 		// Vector3 direction = Math.Abs(horizontal) > Math.Abs(vertical) ? new Vector3(1, 0, 0) * horizontal : new Vector3(0, 1, 0) * vertical;
 		// gameObject.transform.Translate(direction * movementSpeed * Time.deltaTime);
 
-		
+		// Only the local player processes input
+		if (!isLocalPlayer)
+			return;
+
 		if (characterController.isGrounded && canMove) {
 			doubleJump = false;
 
