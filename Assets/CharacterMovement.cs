@@ -13,7 +13,7 @@ public class CharacterMovement : MonoBehaviour {
 	public static bool theRealDebugMode = false;
 
 	public static bool DebugMode = false;
-	public static float movementSpeed = 25.0f;
+	public static float movementSpeed = 35.0f;
 	public static float slowtimer = 0f;
 	public static float nodamagetimer = 0f;
 	public float jumpSpeed = 20.0f;
@@ -36,8 +36,10 @@ public class CharacterMovement : MonoBehaviour {
 	float baseScoreInterval = 1.0f;
 
 	Renderer rend;
+	int flashtimer = 0;
 
 	bool doubleJump = false;
+	static bool isDead = false;
 
 	public AudioSource audio;
 	public GameObject mainCamera;
@@ -75,10 +77,10 @@ public class CharacterMovement : MonoBehaviour {
 
 		
 		if (characterController.isGrounded && canMove) {
-			doubleJump = false;
+			//doubleJump = false;
 
 			//// 360 degree
-			if (CrossPlatformInputManager.GetAxis("Horizontal") != 0 || CrossPlatformInputManager.GetAxis("Vertical") != 0) {
+			if (CrossPlatformInputManager.GetAxis("Horizontal") != 0 || CrossPlatformInputManager.GetAxis("Vertical") != 0 || Input.GetAxisRaw ("Horizontal") !=0 || Input.GetAxisRaw ("Vertical") !=0 ) {
 				speed = 1;
 				// speed = Mathf.Clamp(speed + Time.deltaTime, minSpeed, maxSpeed);
 				animator.SetFloat("WalkSpeed", speed);
@@ -100,13 +102,15 @@ public class CharacterMovement : MonoBehaviour {
 				animator.SetFloat("WalkSpeed", speed);
 			}
 
-			moveToward = new Vector3(CrossPlatformInputManager.GetAxis("Horizontal"), 0, CrossPlatformInputManager.GetAxis("Vertical"));
+			//moveToward = new Vector3(CrossPlatformInputManager.GetAxis("Horizontal"), 0, CrossPlatformInputManager.GetAxis("Vertical"));
+			moveToward = new Vector3(Input.GetAxisRaw ("Horizontal"), 0, Input.GetAxisRaw ("Vertical"));
 			gameObject.transform.LookAt(gameObject.transform.position + new Vector3(moveToward.x, 0, moveToward.z));
 			
 			moveToward = new Vector3(gameObject.transform.forward.x, 0, gameObject.transform.forward.z) * speed * movementSpeed;
 		}
 
-		if (CrossPlatformInputManager.GetButtonDown("Jump") || Input.GetKeyDown("space") && canMove) {
+		if (CrossPlatformInputManager.GetButtonDown("Jump") || Input.GetKeyDown("s")) {
+			Debug.Log ("jump");
 			if (doubleJump || characterController.isGrounded) {
 				animator.SetTrigger(doubleJump ? "DoubleJump" : "Jump");
 				speed = 0;
@@ -120,6 +124,7 @@ public class CharacterMovement : MonoBehaviour {
 		}
 
 		moveToward.y -= gravity * Time.deltaTime;
+		Debug.Log(Input.GetAxisRaw("Vertical"));
 		
 		if (canMove) {
 			characterController.Move(moveToward * Time.deltaTime);
@@ -133,13 +138,21 @@ public class CharacterMovement : MonoBehaviour {
 			slowtimer = 0f;
 		}
 		//check nodamage
-		if (nodamagetimer > 0) {
+		if (nodamagetimer > 0 && DebugMode == true) {
+			
+			if(12 >=flashtimer  && flashtimer > 0 || 36 >= flashtimer  && flashtimer > 24 || 60 >= flashtimer && flashtimer > 48 || 84 >= flashtimer && flashtimer > 72 || 108 >= flashtimer && flashtimer > 96 || 132 >= flashtimer && flashtimer > 120 || 156 >= flashtimer && flashtimer > 144 || 180 >= flashtimer && flashtimer > 168 || 204 >= flashtimer && flashtimer > 192)
+				rend.enabled = true;
+			else
+				rend.enabled = false;
 			nodamagetimer -= Time.deltaTime;
+			flashtimer++;
 		} 
 		else {
 			DebugMode = false;
 			nodamagetimer = 0f;
+			flashtimer = 0;
 			rend = GameObject.Find("Ciccio_LOD0").GetComponent<SkinnedMeshRenderer>();
+			rend.enabled = true;
 			rend.materials[0].shader = Shader.Find("Legacy Shaders/Self-Illumin/Bumped Diffuse");
 		}
 
@@ -170,7 +183,8 @@ public class CharacterMovement : MonoBehaviour {
 
 	public static void GameOver() {
 		Debug.Log("Die!");
-		if (!DebugMode && !theRealDebugMode) {
+		if (!DebugMode && !theRealDebugMode && !isDead) {
+			isDead = true;
 			bgAudio.Stop();
 			cm.audio.PlayOneShot(cm.gameover);
 			CharacterMovement.animator.SetTrigger("Die");
@@ -179,6 +193,8 @@ public class CharacterMovement : MonoBehaviour {
 			if (Score.score > PlayerPrefs.GetInt("highScore")) {
 				PlayerPrefs.SetInt("highScore", Score.score);
 			}
+			isDead = false;
+			prefabscript.wave = 0;
 			cm.Invoke("Back2MainMenu", 3);
 		}
 	}

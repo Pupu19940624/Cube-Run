@@ -22,7 +22,7 @@ public class prefabscript : MonoBehaviour {
 	Vector3 aPosition;
 
 	int number = 1;
-	public int wave;
+	public static int wave;
 
 	void Start () {
 

@@ -21,7 +21,7 @@ public class nodamage : MonoBehaviour {
 			CharacterMovement.DebugMode = true;
 			CharacterMovement.nodamagetimer = nodamagetime;
 
-			rend.materials[0].shader = invincibleShader;
+			//rend.materials[0].shader = invincibleShader;
 
 			Score.score += 50;
 
